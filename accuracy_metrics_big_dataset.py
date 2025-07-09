@@ -5,12 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import accuracy_score, classification_report
-from mlxtend.plotting import plot_decision_regions  # Для визуализации границ
 from preparation import data, target
 
-# Загрузка датасета Iris
-#iris = load_iris()
-#X, y = iris.data, iris.target
+
 X, y = data, target
 
 # Разделение на обучающую и тестовую выборки (70/30)
@@ -51,17 +48,3 @@ plt.ylabel('Точность')
 plt.ylim(0.9, 0.94)
 plt.grid(True, 'both', 'y')
 plt.show()
-
-'''
-# Визуализация границ решений (для первых двух признаков)
-X_2d = X_train[:, :2]  # Берем только 2 признака для визуализации
-knn_2d = KNeighborsClassifier(n_neighbors=5, metric='euclidean')
-knn_2d.fit(X_2d, y_train)
-
-plt.figure(figsize=(10, 6))
-plot_decision_regions(X_2d, y_train, clf=knn_2d, legend=2)
-plt.title('Границы решений kNN (Евклидова метрика, 2D Iris)')
-plt.xlabel(iris.feature_names[0])
-plt.ylabel(iris.feature_names[1])
-plt.show()
-'''

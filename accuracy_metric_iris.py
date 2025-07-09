@@ -50,17 +50,3 @@ plt.ylabel('Точность')
 plt.ylim(0.8, 1.01)
 plt.grid(True, 'both', 'y')
 plt.show()
-
-'''
-# Визуализация границ решений (для первых двух признаков)
-X_2d = X_train[:, :2]  # Берем только 2 признака для визуализации
-knn_2d = KNeighborsClassifier(n_neighbors=5, metric='euclidean')
-knn_2d.fit(X_2d, y_train)
-
-plt.figure(figsize=(10, 6))
-plot_decision_regions(X_2d, y_train, clf=knn_2d, legend=2)
-plt.title('Границы решений kNN (Евклидова метрика, 2D Iris)')
-plt.xlabel(iris.feature_names[0])
-plt.ylabel(iris.feature_names[1])
-plt.show()
-'''
