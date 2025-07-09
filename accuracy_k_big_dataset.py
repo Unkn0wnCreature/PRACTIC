@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -11,7 +10,7 @@ from preparation import data, target
 X, y = data, target
 
 # Разделение на обучающую и тестовую выборки (70/30)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
 # Нормализация данных (kNN чувствителен к масштабу)
 scaler = StandardScaler()
@@ -40,9 +39,9 @@ for name, metric in METRICS.items():
 plt.plot(res[0], 'o-r', label="Евклидова", ms=3)
 plt.plot(res[1], '.-g', label="Манхэттенская", ms=3)
 plt.plot(res[2], 's-k', label="Чебышева", ms=3)
-plt.plot(res[3], ',-b', label="Косинусная", ms=3)
-#plt.legend()
+plt.plot(res[3], 'v-b', label="Косинусная", ms=3)
+plt.legend()
 plt.xlim(0.5, 15)
-plt.ylim(0.86, 0.94)
+plt.ylim(0.8, 1.05)
 plt.grid(True)
 plt.show()
