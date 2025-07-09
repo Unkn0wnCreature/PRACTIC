@@ -6,6 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import accuracy_score, classification_report
 from mlxtend.plotting import plot_decision_regions  # Для визуализации границ
+import time
 #from preparation import data, target
 
 # Загрузка датасета Iris
@@ -30,13 +31,17 @@ METRICS = {
 
 # Сравнение точности для разных метрик
 results = {}
+results_time = {}
 for name, metric in METRICS.items():
     
     knn = KNeighborsClassifier(n_neighbors=5, metric=metric)
+    start = time.time()
     knn.fit(X_train, y_train)
     y_pred = knn.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
+    total_time = time.time() - start
     results[name] = accuracy
+    results_time[name] = total_time
     print(f"{name} метрика: Точность = {accuracy:.4f}")
     print(classification_report(y_test, y_pred, target_names=iris.target_names))
 
@@ -48,5 +53,12 @@ plt.bar(results.keys(), results.values(), color=['blue', 'green', 'red', 'purple
 plt.title(f"Сравнение точности kNN с разными метриками (Iris)")
 plt.ylabel('Точность')
 plt.ylim(0.8, 1.01)
+plt.grid(True, 'both', 'y')
+plt.show()
+
+plt.figure(figsize=(10, 5))
+plt.bar(results.keys(), results.values(), color=['blue', 'green', 'red', 'purple'])
+plt.title(f"Сравнение скорости выполнения kNN с разными метриками (Iris)")
+plt.ylabel('Длительность')
 plt.grid(True, 'both', 'y')
 plt.show()

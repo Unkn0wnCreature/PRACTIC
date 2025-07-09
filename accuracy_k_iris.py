@@ -37,11 +37,14 @@ for name, metric in METRICS.items():
 
     res.append(result)
 
+plt.figure(figsize=(10, 7))
 plt.plot(res[0], 'o-r', label="Евклидова", ms=3)
 plt.plot(res[1], '.-g', label="Манхэттенская", ms=3)
 plt.plot(res[2], 's-k', label="Чебышева", ms=3)
 plt.plot(res[3], 'v-b', label="Косинусная", ms=3)
 plt.legend()
+plt.title("Зависимость точности предсказания от количества соседей (Iris)")
+plt.ylabel("Точность")
 plt.xlim(0.5, 15)
 plt.ylim(0.7, 1.05)
 plt.grid(True)
